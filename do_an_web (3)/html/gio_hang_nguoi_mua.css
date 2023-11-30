@@ -1,0 +1,158 @@
+ body {
+            width: 750px;
+            height: 1100px;
+            font-family: Inter, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: auto;
+        }
+
+       #cart-container {
+    width: 750px;
+    height: 1100px;
+    border: 0.2px solid #000;
+    background: #FFF;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+        #cart-title {
+            width: 100%;
+            height: 64px;
+            display: flex;
+            flex-direction: row;
+            /* justify-content: space-between; */
+            text-align: left;
+            font-size: 32px;
+            font-weight: 400;
+            line-height: normal;
+            color: #000;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+        }
+        #cart-count  {
+            width: 30px;
+            height: 30px;
+            background-color: #f73e38;
+            border-radius: 50%;
+            display: flex;
+            justify-content:center;
+          align-items: center; 
+            color: #130707;
+            font-size: 18px;
+            font-weight: 700;
+            margin-left: 50px;
+        }
+        #customer-id{
+            text-align: left;
+            margin-inline: 20px;
+        }
+        #product-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* border-bottom: 1px solid #ccc; */
+            padding-bottom: 10px;
+        }
+
+        .product img {
+            max-width: 100px;
+            max-height: 100px;
+            margin-right: 20px;
+        }
+
+        .product-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .product-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        #total-container {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        #checkout-btn {
+            width: 496px;
+            height: 75px;
+            border-radius: 20px;
+            background: #8CF738;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            margin-top: 20px;
+            cursor: pointer;
+            margin: 20px auto;
+        }
+        .delete-btn{
+            background-color: rgb(219, 67, 67);
+            align-items: center;
+            cursor: pointer;
+            display: block;
+            padding: 5px;
+        }
+        .increase-btn{
+            background-color: #6de26b;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            margin-inline: 10px;
+            
+        }
+        .decrease-btn{
+            background-color: rgb(246, 242, 245);
+            align-items: center;
+            cursor: pointer;
+            display: block;
+            padding: 12px;
+            margin-right:10px ;
+        }
+        #close-cartForm{
+            background-color: #ff0f03;
+            cursor: pointer;
+            display: block;
+            align-items: center;
+            padding-left:10px ;
+            padding-right: 10px;
+            margin-left: auto;
+            justify-content:center;
+            max-width:fit-content;
+            max-height: 40px;
+        }
+        .product-actions-formcart{
+            display: flex;
+            flex-direction:row;
+        }

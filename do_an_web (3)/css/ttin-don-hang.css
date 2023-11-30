@@ -1,0 +1,142 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.wrapper{
+    width: 100%;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #ccc; */
+}
+.formdon{
+    width: 350px;
+    /* height: 400px; */
+    background-color: #fff;
+    overflow: hidden;
+   
+    
+}
+
+.header-formdon{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.nameform{
+    margin-left: 108px;
+    padding-top: 16px;
+}
+
+.close-formdon{
+    cursor: pointer;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    padding: 15px;
+    background-color: #888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.close-formdon:hover {
+    opacity: 0.8;
+}
+.icon-close{
+    font-size: 34px;
+    color: #fff;
+}
+.ttinkhach-formdon{
+    display: block;
+    margin: 10px 20px;
+}
+.ttinvanchuyen-formdon{
+    margin: 10px 20px;
+}
+.ttin-don-hang-formdon{
+    margin: 20px;
+    margin-bottom: 70px;
+}
+
+.ttin-don-hang-formdon .donhang{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.ttin-don-hang-formdon .sanpham{
+    margin-top: 10px;
+    
+}
+
+.ttin-don-hang-formdon .sanpham .item{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 28px;
+    
+}
+.thanhtien{
+    float: right;
+    margin: 10px 0;
+}
+.trangthai{
+    padding-left: 20px;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.status{
+    width: 45px;
+    height: 20px;
+    background-color: #1dff1d;
+    /* margin-left: 26px; */
+}
+
+
+
+.modal-donhang{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-muahang {
+    text-align: center;
+    height: 40px;
+    width: 100px;
+    margin: 12px 36%;
+    line-height: 40px;
+}
+
+.btn-muahang-text {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.btn-muahang-text:hover{
+    background-color: #1dff1d;
+    cursor: pointer;
+}
+
+
+.ordertime {
+    margin-top: 10px;
+    margin-left: 2px;
+}
+

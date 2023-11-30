@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiệm Bánh Tráng | Bánh tráng mlem hơn người yêu cũ cũa bạn</title>
+    <!--CSS-->
+    <link href="../css/home.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/ttin-don-hang.css">
+    <link href="../css/gio_hang_nguoi_mua.css" rell="stylesheet"/>
+    <!--JS-->
+    <script src="../js/admin.js"></script>
+    <script src="../js/theodoidonhang.js"></script>
+    <script src="../js/home.js"></script>
+    
+</head>
+<body style="background-color: rgb(226, 226, 226);">
+ <script>
+  function checkCart() {
+  var tempArr = JSON.parse(localStorage.getItem('tempArr'));
+  var CartArr = JSON.parse(localStorage.getItem('cart'));
+
+  if (!tempArr || tempArr.length === 0 || (CartArr && CartArr[0] && CartArr[0].cart && CartArr[0].cart[0] ? CartArr[0].cart[0].quantity < 1 : false)) {
+    alert('Không có sản phẩm nào trong giỏ hàng');
+  } else {
+    window.location.href = "./gio_hang_nguoi_mua.html";
+  }
+}
+    window.onload = function(){
+      //createProduct();
+       //home();
+       
+       
+       //Tại trang chủ
+       //theo doi don hang
+       var OrderArr = JSON.parse(localStorage.getItem('bill'));
+       var userLogin = JSON.parse(localStorage.getItem('userLogin'));
+       if(OrderArr){
+        for(i=0;i<OrderArr.length;i++){
+        if(OrderArr[i].userId === userLogin.userId){
+          displayOrder(OrderArr[i].userId);
+        }
+       }
+       }
+       
+       var loggedIn = localStorage.getItem('loggedIn');
+
+      if (loggedIn) {
+      // Người dùng đã đăng nhập, hiển thị thông tin của họ
+      var currentUser = localStorage.getItem('currentUser');
+      document.getElementById('form-dangnhap').style.display = 'none';
+      document.getElementById('form-dangki').style.display = 'none';
+      document.getElementById('theodoi').style.display = 'block';
+      
+      alert("Xin chào, " + currentUser + "!");
+      }
+
+      //Chuc nang admin
+      var quanli = document.getElementById('service-admin');
+      if(currentUser == 'admin') {
+      quanli.style.display = 'block';
+      document.getElementById('theodoi').style.display = 'none';
+      }
+    }
+    function logout() {
+      var loggedIn = localStorage.getItem('loggedIn');
+          if(loggedIn){
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('currentUser');
+            alert("Đăng xuất thành công!");
+            window.location.href = 'base.html';
+          }
+          else{
+            alert("Bạn chưa đăng nhập !");
+          }
+      }
+  </script>
+    <!--Menu-->
+    <div class="menu-container">
+      <ul id="left-menu">
+          <li class="logo"><a href="./base.html"><Strong>Tienbanhtrang.</Strong></a></li>
+          <li><a class="menu-value" href="base.html">Trang chủ</a></li>
+          <li><a class="menu-value" onclick="hienthisanpham()">Bánh tráng phơi sương</a></li>
+          <li><a class="menu-value" onclick="hienthisanpham1()">Combo+Set</a></li>
+          <li><a class="menu-value" onclick="showContact()">Liên hệ</a></li>
+      
+          <button class="search-button" onclick="showSearch()">Search</button>
+          <li class="dropdown">
+              <a class="dropdown-button">Người dùng</a>
+              <div class="dropdown-content">
+                  <a href="#" onclick="theodoidonhang()" id="theodoi" style="display: none;">Theo dõi đơn hàng</a>
+                  <a href="./admin.html" id="service-admin" style="display: none;">Quản lý</a>
+                  
+                  <a href="./dangnhap.html" id="form-dangnhap">Đăng Nhập</a>
+                  <a href="./dangki.html" id="form-dangki">Đăng Ký</a>
+                  <a href="#" onclick="logout()">Đăng xuất</a>
+              </div>
+          </li>
+          
+          <button class="cart-button"><a onclick="checkCart()"><img src="img/cart.svg"></a></button>
+      </ul>
+  </div>
+  <div id="formCart" style="display: none;">
+    <div id="cart-container">
+      <div id="cart-title" >Giỏ hàng của user<span id="customer-id">213812487</span><span id="cart-count"></span></div>
+
+      <div id="product-container">
+          <!-- Sample product elements will be added dynamically here -->
+      </div>
+   
+  </div>
+  </div>
+  
+    <div class="slider-wrapper" >
+      <div class="banner-slider">
+        <div class="slide"><img src="../img/banner1.jpg"></div>
+        <div class="slide"><img src="../img/banner2.jpg"></div>
+        <div class="slide"><img src="../img/banner3.jpg"></div>
+      </div>
+    </div>
+    <div id="main">
+      <div id="text" style="text-align: center; margin-top: 20px;"><h5><strong>ĐỀ CỬ TRONG NGÀY</strong></h5></div>
+      <div id="head_container"></div>
+      <div  id="product-details" class="modal" >
+        <div id="test">
+
+        <!-- <div id="info">
+          <div class="left">
+            <img id="image"src="img/banhtrangbocuon.jpg"/>
+          </div>
+            <div class="right">
+                <h4 id="productname"></h4>
+                <h5 id="productid"> </h5>
+                <p>Bánh tráng thơm ngon, dẻo dai.</p>
+                <h4 id="productprice"></h4>
+                <br /><br />
+                <h4>Số lượng: </h4>
+                <button class="quantityDown" onclick="quantitydown()">-</button><input type="text" id="quantity" value="1"><button class="quantityUp" onclick="quantityup()" >+</button>
+                <button class="btn-cart" href="#" onclick="addToCart()">Thêm vào giỏ hàng</button>
+                <br />
+                <div style="margin-top: 10px; color: red; cursor: pointer; display: flex ; justify-content: center;" onclick="closeProductInfo()">Quay lại trang chủ</div>
+                
+              </div>
+        </div> -->
+
+      </div>
+    </div>
+    <div id="theodoidonhang" class="modal">
+      <div id="kichthuoc">
+          <div class="demuc">
+              <div class="ma_don">Mã đơn</div>
+              <div class="sp">Sản phẩm</div>
+              <div class="don_gia">Đơn giá</div>
+              <div class="ngay">Ngày</div>
+              <div class="tinh_trang">Tình trạng</div>
+          </div>
+          <div id="list_order">
+      </div>
+      <a href="#" onclick="closetheodoidonhang()">Quay lại trang chủ</a>
+  </div>
+    </div>
+<!--Search-->
+
+    <div class="container-search">
+
+      <div id="search-section">
+        <div class="search-container">
+          <div class="close-btn" onclick="closeSearch()">x</div>
+          <div class="search-box">
+            <input type="text" id="search" onkeyup="search()" placeholder="Search...">
+            <button id="search-btn" onclick="search()">Search</button>
+          </div>
+          <div id="advanced-search" class="">
+            <div>
+              <select id="type-search">
+                <option value="all-type" selected>Tất cả</option>
+                <option value="banhtrang">Bánh tráng phơi sương</option>
+                <option value="combo">Combo+Mẹt</option>
+              </select>
+            </div>
+            <div><input type="text" id="price-from" placeholder="Giá từ:"> &mdash;<input type="text" id="to-price" placeholder="Đến:"></div>
+          </div>
+          <div id="search-result"></div>
+        <div id="pagination-container2"></div>
+    
+        </div>
+      </div>
+      
+    </div>
+  
+
+
+
+    <div id="pagination-container"></div>
+    
+    
+  
+    <footer class="footer">
+      <div class="column">
+        <h3>Về tiệm bánh tráng:</h3>
+        <p>Chào mừng bạn đến với <b>Tiembanhtrang.</b></p>
+        <p>Chúng tôi vô cùng tự hào giới thiệu những chiếc bánh tráng ngon nhất, khiến bạn ăn một lần là không thể nào quên.</p>
+      </div>
+      <div class="column">
+        <h3>Sản phẩm nổi bật:</h3>
+        <p>Bánh tráng phơi sương</p>
+        <p>Bánh tráng sì ke</p>
+        <p>Bánh tráng trộn</p>
+        <p>Bánh tráng cuốn</p>
+      </div>
+      <div class="column">
+        <h3>Liên hệ với chúng tôi:</h3>
+        <p>Instagram: @tiem_banhtrang</p>
+        <p>Fanpage: Tiệm Bánh Tráng</p>
+        <p>Số diện thoại: 08083508</p>
+      </div>
+    </footer>
+</body>
+</html>

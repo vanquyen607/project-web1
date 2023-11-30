@@ -1,0 +1,235 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#menu{
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F1F1F1;
+}
+
+#menu_doc{
+    height: 1024px;
+    width: 240px;
+    background-color: white;
+}
+
+.menu_avt{
+    height: 220px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.circle{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    align-items: center;
+}
+
+.text{
+    margin-top: 10px;
+}
+
+.item{
+    background-color: #D9D9D9;
+    
+    height: 70px;
+    font-size: 23;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item:hover{
+    background-color: #8CF738;
+    cursor: pointer;
+}
+
+#rectangle{
+    position: absolute;
+    margin-left: 20px;
+    width: 1200px;
+    left: 220px;
+    right: 0;
+    top: 0;  
+}
+
+.khung_tren{
+    height: 220px;
+    background-image: linear-gradient(to right, #0C810A 0%, #BCEF51 100%); 
+}
+
+.timkiem input{
+    position: absolute;
+    width: 700px;
+    height: 60px;
+    top: 80px;
+    left: 20%;
+}
+
+#home{
+    left: 0px;
+    position: absolute;
+    font-size: 25px;
+}
+
+#exit{
+    position: absolute;
+    font-size: 25px;
+    left: 40px;
+}
+
+.khung_duoi{
+    width: 1200px;
+    height: 800px;
+}
+#doanhthu{
+    display: block;
+}
+#sanpham{
+    display: none;
+}
+#donhang{
+    
+    display: none;
+}
+select{
+    background-color:  #D9D9D9;
+    width: 250px;
+    height: 60px;
+    margin-top: 20px;
+    margin-left: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+
+}
+
+.danhmuc{
+    width: 1100;
+    height: 60px;
+    background-color: #D9D9D9;
+}
+.de_muc{
+    font-size: 24;
+    font-weight: 700;
+    width: 1100px;
+    height: 60px;
+    background-color: #D9D9D9;
+    margin-top: 11px;
+    margin-left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.list{
+    font-size: 24;
+    width: 1100px;
+    height: 120px;
+    background-color: white;
+    margin-top: 6px;
+    margin-left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.masp_dt{
+    width: 110px;
+}
+.sp_dt{
+    width: 160px;
+}
+.tensp_dt{
+    width: 480px;
+}
+.soluong_dt{
+    width: 150px;
+}
+.dongia_dt{
+    width: 200px;
+}
+#sanpham{
+    background-color: #F1F1F1;
+}
+.themxoa_sp{
+    background-color: #D9D9D9;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 50px;
+    width: 100px;
+    height: 30px;
+    font-weight: 700;
+    font-size: 24;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.themxoa_sp:hover, .sua_sp:hover, .xoa_sp:hover{
+    background-color: white;
+    cursor: pointer;
+}
+.masp_sp{
+    width: 110px;
+}
+.sp_sp{
+    width: 160px;
+}
+.tensp_sp{
+    width: 450px;
+}
+.loai_sp{
+    width: 100px;
+}
+.dongia_sp{
+    width: 150px;
+}
+.thaotac_sp{
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.sua_sp{
+    background-color: #D9D9D9;
+    text-align: center;
+    width: 50px;
+    height: 40px;
+    font-size: 20;
+}
+.xoa_sp{
+    margin-top: 10px;
+    background-color: #D9D9D9;
+    text-align: center;
+    width: 50px;
+    height: 40px;
+    font-size: 20;
+}
+.action-button {
+    cursor: pointer;
+    width: 40px;
+    height:20px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    text-align: center;
+}
+
+.action-button:hover {
+    background-color: #ddd;
+    color: #333;
+    border-color: #333;
+}

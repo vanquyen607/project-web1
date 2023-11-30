@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng của bạn</title>
+    <link rel="stylesheet" type="text/css" href="./gio_hang_nguoi_mua.css">
+    <link rel="stylesheet" href="../css/ttin-don-hang.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />    
+    <script src="./mang_gio_hang.js"></script>
+</head>
+<body>
+    <script>
+        window.onload=function(){
+            
+            showCartForm();
+        }
+    </script>
+    <div id="formCart"></div>
+    
+    
+
+        <!-- DON HANG -->
+
+        <div class="modal-donhang" style="display: none;">
+
+            <div class="wrapper">
+               <div class="formdon">
+                   <div class="header-formdon">
+                       <p class="nameform">Thông tin đơn hàng</p>
+                       <div class="close-formdon" >
+                           <i class=" icon-close fas fa-window-close"></i>
+                       </div>
+                   </div>
+                   <div class="ttinkhach-formdon">
+                       <div>Địa chỉ nhận hàng</div>
+                       <div>Tên KH</div>
+                       <div>SĐT</div>
+                       <div></div>
+                   </div>
+                   <div class="ttinvanchuyen-formdon">
+                       <div>Thông tin vận chuyển</div>
+                       <div>Giao hàng nhanh</div>
+                   </div>
+
+                   <div class="ttin-don-hang-formdon">
+       
+                       <div class="donhang">
+                           <div>Đơn hàng gồm</div>
+                           <div>SL</div>
+                       </div>
+       
+                       <div class="sanpham">
+                           
+                           <div class="item">
+                              <div>1.Bánh tráng phơi sương</div> 
+                              <span>1</span>
+                           </div>
+                           <!-- <div class="item">
+                               <div>2.Bánh tráng xì ke</div>
+                               <span>1</span>
+                           </div>
+                           <div class="item">
+                               <div>3.Bánh tráng trộn</div>
+                               <span>1</span>
+                           </div> -->
+                           
+                       </div>
+
+                       <div class="ordertime">
+                           <div>Ngày đặt : ...............</div>
+                       </div>
+                       
+       
+                       <div class="thanhtien">
+       
+                           <div>Thành tiền : ...........VND</div>
+                       </div>
+                       
+           
+                   </div>
+       
+                   <div id="btn-muahang">
+                       <button type="button" class="btn-muahang-text" onclick="">Đặt Hàng</button>
+                   </div>
+               </div>
+           </div> 
+           
+       </div>
+
+    
+    
+    <!-- <div id="cart-container">
+        <div id="cart-title">Giỏ hàng của user<span id="customer-Id">213812487</span><span id="cart-count"></span></div>
+
+        <div id="product-container">
+             Sample product elements will be added dynamically here 
+        </div>
+     
+        <div id="total-container">Tổng cộng: $0.00</div>
+        <div id="checkout-btn" onclick="paying()">Thanh toán</div>
+        <script src="./mang_gio_hang.js"></script>
+    </div> -->
+</body>
+</html>

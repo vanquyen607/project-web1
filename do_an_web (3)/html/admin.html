@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" >
+        <title>Admin</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /> 
+        <script src="../js/admin.js"></script>
+        <script src="../js/theodoidonhang.js"></script>
+        <!-- <script src="../js/quan_ly_don_hang.js"></script>
+        <script src="../js/quan_ly_nguoi_dung.js"></script> -->
+        <link rel="stylesheet" href="../css/admin.css" />
+        <link rel="stylesheet" href="../css/them_sua_xoa_sp.css">
+        <link rel="stylesheet" href="../css/quan_ly_don_hang.css">
+        <link rel="stylesheet" href="../css/quan_ly_nguoi_dung.css">
+        <link rel="stylesheet" href="../css/ttin-don-hang.css">
+    </head>
+    <body>
+        <form name="menu" >
+            
+            <div id="menu">
+                <div id="menu_doc">
+                    <div style="display: flex; flex-direction: row;">
+                        <a id="home" href="./base.html"><i class="fa-solid fa-house"></i></a>
+                    </div>
+                    <div class="menu_avt">
+                        <div class="circle"></div>
+                        <div class="text">@Adminstrator</div>
+                    </div>
+                    <div><a class="item" href="./admin.html">Thống kê doanh thu</a> </div>
+                    <div><a class="item" onclick="showListProduct()">Quản lý sản phẩm</a></div>
+                    <div><a class="item" onclick="showListUsers()">Quản lý người dùng</a></div>
+                    <div><a class="item" onclick="showListOrders()">Quản lý đơn hàng</a></div>
+                </div>
+                <div id="rectangle">
+                    <div class="khung_tren"></div>
+                    <div class="khung_duoi">
+                        <!--Trang quản lý sản phẩm-->
+                        <div id="sanpham">
+                            <div>
+                                <input class="themxoa_sp" value="Thêm" onclick="showThem()"/> 
+                                <input class="themxoa_sp" value="Xóa" onclick="deleteCheckedProduct()"/>      
+                            </div>
+                            <div class="de_muc">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="selectAllProducts" onchange="selectAllProduct()">
+                                </div>
+                                <div class="masp_sp">Mã SP</div>
+                                <div class="sp_sp">SP</div>
+                                <div class="tensp_sp">Tên SP</div>
+                                <div class="loai_sp">Loại</div>
+                                <div class="dongia_sp">Đơn Giá</div>
+                                <div class="thaotac_sp">Thao Tác</div>
+                            </div>
+                            <div id="list_sp"></div>
+                        </div>
+                        <!--Trang quản lý người dùng-->
+                        <div id="nguoidung" style="display: none;">
+                            <div id="delete-button" class="action-buttons" onclick="deleteSelectedCustomers()">Xóa</div>
+                            <div id="container"> <!-- Make sure you have this div with the id "container" -->
+                                <div id="customer-info-header">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                                    </div>
+                                    <div>Mã Khách Hàng</div>
+                                    <div>Tên Khách Hàng</div>
+                                    <div>User Name</div>
+                                    <div>Email</div>
+                                    <div>Số Điện Thoại</div>
+                                </div>
+                                <div id="customer-info"></div>
+                            </div>
+                        </div>    
+                        <!--Trang quản lý đơn hàng-->
+                        <div id="donhang">
+                            <div>
+                                <select name="donhang">
+                                    <option value="nam" selected>Đơn hàng trong năm nay</option>
+                                    <option value="thang">Đơn hàng trong tháng này</option>
+                                    <option value="ngay">Đơn hàng trong ngày hôm nay</option>
+                                </select>
+                            </div>
+                            <div class="header">
+                                <div>Mã đơn</div>
+                                <div>Mã KH</div>
+                                <div>Đơn giá</div>
+                                <div>Ngày đặt mua</div>
+                                <div>Tình trạng</div>
+                            </div>
+                            <div id="list_order"></div>
+                        </div>
+                        <!--Form sửa sản phẩm-->
+                        <div id="formSuaSanPham">
+                            <div class="baokhung-sua">        
+                                <div class="khung-sua">
+                                    <div class="container-sua">
+                                        <div class="image-container-sua">
+                                            <!-- Ảnh -->
+                                            <input type="button" class="delete-image-sua" id="deleteimagebutton" onclick="deleteImage_Sua()" value="xóa ảnh" />
+                                            <input type="file" id="file-change">
+                                            <img id="change-image" src="#" alt="Change Image">
+                                            
+                                        </div>
+                                        <div class="form-container-sua">
+                                            <div>
+                                                <input type="text" id="loai-sp-sua" placeholder="Sửa loại sản phẩm">
+                                            </div>
+                                            <div>
+                                                <!-- Nhập mã sản phẩm -->
+                                                <input type="text" id="ma-san-pham-sua" placeholder="Sửa mã sản phẩm">
+                                            </div>
+                                            <div>
+                                                <!-- Nhập tên sản phẩm -->
+                                                <input type="text" id="ten-san-pham-sua" placeholder="Sửa tên sản phẩm">
+                                            </div>
+                                            <div>
+                                                <!-- Thêm mô tả sản phẩm -->
+                                                <textarea id="mo-ta-san-pham-sua" placeholder="Sửa mô tả sản phẩm"></textarea>
+                                            </div>
+                                            <div>
+                                                <!-- Nhập giá thành -->
+                                                <input type="text" id="gia-thanh-sua" placeholder="Sửa giá thành">
+                                            </div>
+                                            <div class="buttons-sua">
+                                                <!-- Nút Hủy -->
+                                                <input type="button" class="cancel-sua" value="Hủy" onclick="hideSua()"/>
+                                                <!-- Nút Lưu -->
+                                                <input type="button" class="save-sua" value="Lưu" onclick="updateProduct()"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script src="../js/sua_sp.js"></script>
+                        </div>
+                    
+                        <!--Form thêm sản phẩm-->
+                        <div id="formThemSanPham">
+                            <div class="baokhung-them">
+                                <div class="khung-them">
+                                    <div class="container-them">
+                                        <div class="image-container-them">
+                                            <!-- Image -->
+                                            <input type="button" class="delete-image-them" id="delete-image" onclick="deleteImage_Them()" value="Xóa ảnh" />
+                                            <input type="file" id="file-input">
+                                            <img id="uploaded-image" src="#" alt="Uploaded Image">
+                                        </div>
+                                        <div class="form-container-them">
+                                            <div>
+                                                <input type="text" id="loai-sp-them" placeholder="Nhập loại sản phẩm">
+                                            </div>
+                                            <div>
+                                                <input type="text" id="ma-san-pham-them" placeholder="Nhập mã sản phẩm">
+                                            </div>
+                                            <div>
+                                                <input type="text" id="ten-san-pham-them" placeholder="Nhập tên sản phẩm">
+                                            </div>
+                                            <div>
+                                                <textarea id="mo-ta-san-pham-them" placeholder="Thêm mô tả sản phẩm"></textarea>
+                                            </div>
+                                            <div>
+                                                <input type="text" id="gia-thanh-them" placeholder="Nhập giá thành">
+                                            </div>
+                                            <div class="buttons">
+                                                <input type="button" class="cancel-them" value="Hủy" onclick="hideThem()"/>
+                                                <input type="button" class="add-them" value="Thêm" onclick="addProduct()"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script src="../js/them_sp.js"></script>
+                        </div>
+                        
+                        <!-- Form thông tin đơn hàng -->
+                        <div class="modal-donhang" style="display: none;">
+
+                            <div class="wrapper">
+                               <div class="formdon">
+                                   <div class="header-formdon">
+                                       <p class="nameform">Thông tin đơn hàng</p>
+                                       <div class="close-formdon" >
+                                           <i class=" icon-close fas fa-window-close"></i>
+                                       </div>
+                                   </div>
+                                   <div class="ttinkhach-formdon">
+                                       <div>Địa chỉ nhận hàng</div>
+                                       <div>Tên KH</div>
+                                       <div>SĐT</div>
+                                       <div></div>
+                                   </div>
+                                   <div class="ttinvanchuyen-formdon">
+                                       <div>Thông tin vận chuyển</div>
+                                       <div>Giao hàng nhanh</div>
+                                   </div>
+                
+                                   <div class="ttin-don-hang-formdon">
+                       
+                                       <div class="donhang">
+                                           <div>Đơn hàng gồm</div>
+                                           <div>SL</div>
+                                       </div>
+                       
+                                       <div class="sanpham">
+                                           
+                                           <div class="item">
+                                              <div>1.Bánh tráng phơi sương</div> 
+                                              <span>1</span>
+                                           </div>
+                                           <!-- <div class="item">
+                                               <div>2.Bánh tráng xì ke</div>
+                                               <span>1</span>
+                                           </div>
+                                           <div class="item">
+                                               <div>3.Bánh tráng trộn</div>
+                                               <span>1</span>
+                                           </div> -->
+                                           
+                                       </div>
+                
+                                       <div class="ordertime">
+                                           <div>Ngày đặt : ...............</div>
+                                       </div>
+                                       
+                       
+                                       <div class="thanhtien">
+                       
+                                           <div>Thành tiền : ...........VND</div>
+                                       </div>
+                                       
+                           
+                                   </div>
+                       
+                                   
+                               </div>
+                           </div> 
+                           
+                       </div>
+                        
+
+                        <!--Trang thống kê doanh thu-->
+                        <div id="doanhthu" value="1">
+                            <select name="doanhthu">
+                                <option value="nam" selected>Doanh thu theo năm</option>
+                                <option value="thang">Doanh thu theo tháng</option>
+                                <option value="ngay">Doanh thu theo ngày</option>
+                            </select>
+                            <div class="de_muc">
+                                <div class="masp_dt">Mã SP</div>
+                                <div class="sp_dt">SP</div>
+                                <div class="tensp_dt">Tên SP</div>
+                                <div class="soluong_dt">SL</div>
+                                <div class="dongia_dt">Đơn Giá</div>
+                            </div>
+                            <div class="list">
+                                <div class="masp_dt">S001</div>
+                                <div class="sp_dt">Hình ảnh</div>
+                                <div class="tensp_dt">Bánh tráng phơi sương</div>
+                                <div class="soluong_dt">1</div>
+                                <div class="dongia_dt">20000</div>
+                            </div>
+                            <div class="list">
+                                <div class="masp_dt">S001</div>
+                                <div class="sp_dt">Hình ảnh</div>
+                                <div class="tensp_dt">Bánh tráng phơi sương</div>
+                                <div class="soluong_dt">1</div>
+                                <div class="dongia_dt">20000</div>
+                            </div>
+                            <div class="list">
+                                <div class="masp_dt">S001</div>
+                                <div class="sp_dt">Hình ảnh</div>
+                                <div class="tensp_dt">Bánh tráng phơi sương</div>
+                                <div class="soluong_dt">1</div>
+                                <div class="dongia_dt">20000</div>
+                            </div>
+                            <div class="list">
+                                <div class="masp_dt">S001</div>
+                                <div class="sp_dt">Hình ảnh</div>
+                                <div class="tensp_dt">Bánh tráng phơi sương</div>
+                                <div class="soluong_dt">1</div>
+                                <div class="dongia_dt">20000</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            
+            </div>
+            
+        </form>
+        <script >
+            window.onload = function(){
+                // createProduct();
+                displayProductList();
+                displayOrderList();
+                displayUserList();
+                showStatus();
+            }
+        </script>
+    </body>
+    
+</html>

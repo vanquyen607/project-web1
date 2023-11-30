@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/dangky.css">
+    <!-- <link rel="stylesheet" href="../js/dangki.js"> -->
+    <!-- <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />    
+</head>
+
+<script>
+  
+  var a=0;
+  function validateRegistration(username, password,repassword) {
+  // Kiểm tra xem trường đều đã được điền vào
+  if (!username ) {
+    alert("Vui lòng điền tên đăng nhập");
+    return false;
+  }
+
+  
+  if ( !password ) {
+    alert("Vui lòng điền mật khẩu");
+    return false;
+  }
+
+  if (!repassword) {
+    alert("Vui lòng điền lại mật khẩu");
+    return false;
+  }
+
+
+  // Kiểm tra tên đăng nhập
+  var userregex = /[^\s]+[\d{6}]$/; //bắt đầu bằng kí tự và nối tiếp chuỗi 6 kí tự số
+  if(!userregex.test(username))
+  {
+    alert("Tên đăng nhập không hợp lệ");
+    return false;
+  }
+  
+
+
+  
+
+  // Kiểm tra độ dài tối thiểu của mật khẩu (ví dụ: ít nhất 6 ký tự)
+  if (password.length < 6) {
+    alert("Mật khẩu cần ít nhất 6 ký tự");
+    return false;
+  }
+
+  if(password != repassword) {
+    alert("Mật khẩu không khớp !")
+    return false;
+  }
+
+
+ 
+
+  // Nếu tất cả kiểm tra đều đúng, trả về true
+  return true;
+}
+
+function validateEmail(email) {
+  //Kiểm tra email
+  if(!email)
+  {
+    alert("Vui lòng điền email");
+    return false;
+  }
+  // Biểu thức chính quy cho địa chỉ email
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Kiểm tra xem địa chỉ email có hợp lệ không
+  if (emailRegex.test(email)) {
+    return true;
+  } 
+  else {
+    alert("Địa chỉ email không hợp lệ");
+    return false;
+  }
+}
+
+//Kiem tra dia chi khach hang
+function validateAddress(address) {
+  if(!address.trim()){
+    alert("Vui lòng điền địa chỉ ");
+    return false;
+  }
+
+  var addressRegex = /[^\s]+$/;
+
+  if(addressRegex.test(address)){
+    return true;
+  }
+  else{
+    alert("Địa chỉ không hợp lệ");
+    return false;
+  }
+}
+
+// Kiem tra fullname khach hang
+function validateFullname(fullname) {
+  
+  if(!fullname.trim()) {
+    alert("Vui lòng điền họ tên ");
+    return false;
+  }
+  
+  // Kiểm tra xem chuỗi chỉ chứa ký tự chữ và khoảng trắng
+  var fullnameRegex = /^[A-Za-z\s]+$/;
+
+  if(fullnameRegex.test(fullname)){
+    return true;
+  }
+  else{
+    alert("Họ tên không hợp lệ");
+    return false;
+  }
+}
+
+// Kiem tra phonenumber khach hang
+function validatePhonenumber(phonenumber) {
+  if(!phonenumber.trim()){
+    alert("Vui lòng điền số điện thoại ");
+    return false;
+  }
+
+  var phonenumberRegex = /^[0]+\d{9}$/;
+
+  if(phonenumberRegex.test(phonenumber)){
+    return true;
+  }
+  else{
+    alert("Số điện thoại không hợp lệ");
+    return false;
+  }
+}
+
+
+
+
+var usersDataArray = [];
+
+function registerUser(e) {
+  event.preventDefault();
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+  var email = document.getElementById('email').value;
+  var repassword =document.getElementById('repassword').value;
+  var address = document.getElementById('address').value;
+  var fullname = document.getElementById('fullname').value;
+  var phonenumber = document.getElementById('phonenumber').value;
+
+  // Kiểm tra dữ liệu nhập vào
+  if ( validateRegistration(username, password,repassword) 
+  && validateEmail(email) 
+  && validateAddress(address) 
+  && validateFullname(fullname) && validatePhonenumber(phonenumber)
+  )
+  {
+    
+    // Tiếp tục xử lý hoặc lưu trữ dữ liệu nếu muốn
+    a++;
+    var user = { 
+      userId: a,
+      username: username,
+      password: password ,
+      email: email,
+      address: address,
+      fullname: fullname,
+      phonenumber: phonenumber        
+    };
+
+    // Kiểm tra xem user đã tồn tại trong mảng chưa
+    var existingUser = usersDataArray.find(function(user) {
+      return user.username === username || user.email === email;
+    });
+
+    if (existingUser) {
+    alert("Username hoặc email đã tồn tại.");
+    return false;
+    }
+    
+    // Thêm đối tượng user vào mảng
+    usersDataArray.push(user);
+
+    // // Lưu mảng vào Local Storage
+    localStorage.setItem('usersDataArray', JSON.stringify(usersDataArray));
+
+    
+    alert("Đăng ký thành công");
+  }
+    
+}
+
+</script>
+<body>
+    <div class="wapper">
+
+        <form action="" onsubmit="registerUser();" id="fomdangky">
+
+                <h1>ĐĂNG KÝ</h1>
+                <div class="input">
+
+                    <div class="input-form">
+                        <span class="text">Username</span>
+                        <input type="text" id="username" class="input-box" placeholder="NAME">
+                        <!-- <span class="error-form-username ">Vui lòng nhập trường này !</span> -->
+                    </div>
+
+                    <div class="input-form">
+                        <span class="text">Email</span>
+                        <input type="email" id="email" class="input-box" placeholder="EMAIL">
+                        <!-- <span class="error-form-email ">Vui lòng nhập trường này !</span> -->
+
+                    </div>
+
+                    <div class="input-form">
+                        <span class="text">Password</span>
+                        <input type="password" id="password" class="input-box">
+                        <!-- <span class="error-form-password ">Vui lòng nhập trường này !</span> -->
+
+                    </div>
+    
+                    <div class="input-form">
+                        <span class="text">Confirm Password</span>
+                        <input type="password" id="repassword" class="input-box">
+                        <!-- <span class="error-form-repassword ">Vui lòng nhập trường này !</span> -->
+
+                    </div>
+
+                    <div class="input-form">
+                      <span class="text">Address</span>
+                      <input type="text" id="address" class="input-box" placeholder="">
+                      <!-- <span class="error-form-username ">Vui lòng nhập trường này !</span> -->
+                    </div>
+
+                    <div class="input-form">
+                      <span class="text">Full Name</span>
+                      <input type="text" id="fullname" class="input-box" placeholder="">
+                      <!-- <span class="error-form-username ">Vui lòng nhập trường này !</span> -->
+                    </div>
+
+                    <div class="input-form">
+                      <span class="text">Phone Number</span>
+                      <input type="text" id="phonenumber" class="input-box" placeholder="">
+                      <!-- <span class="error-form-username ">Vui lòng nhập trường này !</span> -->
+                    </div>
+
+                </div>
+                <div class="icon">
+                    <a href=""><i class="icon-item fab fa-facebook"></i></a>
+                    <a href=""><i class="icon-item fab fa-twitter"></i></a>
+                    <a href=""><i class="icon-item fab fa-google"></i></a>
+                </div>
+                <p>Nếu bạn đã có tài khoản ? <a id="backdangnhap" href="./dangnhap.html">Login</a></p>
+                <div class="form-btn">
+                   
+                    <button type="submit"  class="btn-dangky">ĐĂNG KÝ</button>
+                    
+                </div>
+
+           
+        </form>
+</body>
+
+</html>
